@@ -18,7 +18,7 @@ const App = () => {
     setMenu(!menu);
   };
   return (
-    <main className="font-inter  md:px-48 md:pt-8">
+    <main className="font-inter container mx-auto md:h-screen md:px-48 md:pt-8">
       <nav className="flex items-center justify-between px-4 pb-3 pt-7 md:pb-8">
         <img className="h-7 w-max md:h-12" src={logo} alt="Logo" />
         <img
@@ -29,7 +29,12 @@ const App = () => {
         />
         <ul className="hidden gap-8 md:flex">
           {data.navigation.map((data) => (
-            <li key={data.id}>{data.title}</li>
+            <li
+              className="text-neutral-veryDarkBlue hover:text-primary-softRed transition ease-in-out"
+              key={data.id}
+            >
+              <a href="/">{data.title}</a>
+            </li>
           ))}
         </ul>
         {menu && (
@@ -47,7 +52,7 @@ const App = () => {
                     className="text-neutral-veryDarkBlue text-xl"
                     key={data.id}
                   >
-                    {data.title}
+                    <a href="/">{data.title}</a>
                   </li>
                 ))}
               </ul>
@@ -55,8 +60,8 @@ const App = () => {
           </div>
         )}
       </nav>
-      <section className="flex h-auto flex-col gap-14 p-4 md:grid md:grid-cols-3 md:grid-rows-2 md:gap-9 md:gap-y-16">
-        <section className="grid grid-cols-1 gap-4  md:col-span-2 md:row-span-2 md:grid-cols-2">
+      <section className="flex flex-col gap-14 p-4 md:grid md:h-auto md:grid-cols-3 md:grid-rows-3 md:gap-9 md:gap-x-4">
+        <section className="grid grid-cols-1 gap-4 md:col-span-2 md:row-span-3 md:grid-cols-2 md:pr-5">
           <img
             className="h-max w-full md:hidden"
             src={mobileWeb3}
@@ -67,24 +72,31 @@ const App = () => {
             src={desktopWeb3}
             alt="Web 3 Image"
           />
-          <h1 className="text-neutral-veryDarkBlue text-[2.6rem] font-extrabold leading-none md:w-3/4 md:text-6xl">
+          <h1 className="text-neutral-veryDarkBlue text-[2.6rem] font-extrabold leading-none md:w-3/4 md:text-5xl">
             {data.mainArticle.title}
           </h1>
-          <div className="space-y-4 md:flex md:h-full md:flex-col md:justify-between md:space-y-0 md:pl-12 md:pt-4">
-            <p className="text-neutral-darkGrayishBlue text-lg">
+          <div className="flex flex-col space-y-4 md:h-full md:justify-between md:space-y-0 md:pl-3">
+            <p className="text-neutral-darkGrayishBlue md:text-md md:text-pretty">
               {data.mainArticle.description}
             </p>
-            <button className="bg-primary-softRed md:text-md w-max px-6 py-3 text-sm tracking-[0.25rem] text-white ">
+            <a
+              className="bg-primary-softRed md:text-md hover:bg-neutral-veryDarkBlue w-max px-6 py-3 text-sm tracking-[0.25rem] text-white transition ease-in-out"
+              href="/"
+            >
               READ MORE
-            </button>
+            </a>
           </div>
         </section>
-        <aside className="bg-neutral-veryDarkBlue flex flex-col gap-4 p-5 md:row-span-2">
-          <h1 className="text-primary-softOrange text-3xl font-bold">New</h1>
-          <ul className="divide-neutral-darkGrayishBlue flex flex-col gap-2 divide-y-[1px]">
+        <aside className="bg-neutral-veryDarkBlue flex flex-col gap-4 p-5 md:row-span-3 md:py-8">
+          <h1 className="text-primary-softOrange text-3xl font-bold md:text-5xl">
+            New
+          </h1>
+          <ul className="divide-neutral-darkGrayishBlue flex flex-col gap-2 divide-y-[1px] md:grid md:h-full md:grid-flow-row">
             {data.newArticle.map((data) => (
               <li className="py-5" key={data.id}>
-                <h2 className="text-xl font-bold text-white">{data.title}</h2>
+                <h2 className="hover:text-primary-softOrange text-xl font-bold text-white transition ease-in-out md:text-2xl">
+                  <a href="/">{data.title}</a>
+                </h2>
                 <p className="text-neutral-grayishBlue">{data.description}</p>
               </li>
             ))}
@@ -102,8 +114,8 @@ const App = () => {
                 <h1 className="text-neutral-grayishBlue text-3xl font-bold">
                   0{data.id}
                 </h1>
-                <h2 className="text-neutral-veryDarkBlue text-lg font-extrabold">
-                  {data.title}
+                <h2 className="text-neutral-veryDarkBlue hover:text-primary-softRed text-lg font-extrabold transition ease-in-out">
+                  <a href="/">{data.title}</a>
                 </h2>
                 <p className="text-neutral-darkGrayishBlue text-sm">
                   {data.description}
