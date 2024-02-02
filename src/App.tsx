@@ -1,19 +1,53 @@
 import logo from "/images/logo.svg";
 import iconMenu from "/images/icon-menu.svg";
+import iconClose from "/images/icon-menu-close.svg";
 import mobileWeb3 from "/images/image-web-3-mobile.jpg";
 import gamingGrowth from "/images/image-gaming-growth.jpg";
 import retroPcs from "/images/image-retro-pcs.jpg";
 import topLaptops from "/images/image-top-laptops.jpg";
 
 import data from "./data";
+import { useState } from "react";
 
 const App = () => {
   const images = [retroPcs, topLaptops, gamingGrowth];
+  const [menu, setMenu] = useState(false);
+
+  const handleClick = () => {
+    setMenu(!menu);
+  };
   return (
     <main className="font-inter">
       <nav className="flex items-center justify-between px-4 pb-3 pt-7">
         <img className="h-7 w-max" src={logo} alt="Logo" />
-        <img className="size-max" src={iconMenu} alt="Hamburger Menu" />
+        <img
+          onClick={handleClick}
+          className="size-max"
+          src={iconMenu}
+          alt="Hamburger Menu"
+        />
+        {menu && (
+          <div className="bg-neutral-veryDarkBlue/40 fixed inset-0">
+            <div className="absolute right-0 flex h-full w-3/4 flex-col bg-white p-6">
+              <img
+                onClick={handleClick}
+                className="size-max self-end"
+                src={iconClose}
+                alt="Close Icon"
+              />
+              <ul className="flex size-full flex-col gap-6 py-36">
+                {data.navigation.map((data) => (
+                  <li
+                    className="text-neutral-veryDarkBlue text-xl"
+                    key={data.id}
+                  >
+                    {data.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </nav>
       <section className="flex flex-col gap-14 p-4">
         <section className="grid grid-cols-1 gap-4">

@@ -1,4 +1,5 @@
 const data = {
+    navigation: [ {id: 0, title: "Home"}, {id: 1, title: "New"}, {id: 2,title: "Popular"}, {id: 3, title: "Trending"}, {id: 4, title: "Categories"}],
     mainArticle: {
         title: "The Bright Future of Web 3.0?",
         description: "We dive into the next evolution of the web that claims to put the power of the platform back inito the hands of the people. But is it really fulfilling its promise?",
