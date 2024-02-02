@@ -7,8 +7,26 @@ import gamingGrowth from "/images/image-gaming-growth.jpg";
 import retroPcs from "/images/image-retro-pcs.jpg";
 import topLaptops from "/images/image-top-laptops.jpg";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 import data from "./data";
 import { useState } from "react";
+
+const navigationVariants = {
+  intial: {
+    opacity: 0,
+    scale: 0,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      type: "spring",
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 const App = () => {
   const images = [retroPcs, topLaptops, gamingGrowth];
@@ -18,27 +36,42 @@ const App = () => {
     setMenu(!menu);
   };
   return (
-    <main className="font-inter container mx-auto md:h-screen md:px-48 md:pt-8">
-      <nav className="flex items-center justify-between px-4 pb-3 pt-7 md:pb-8">
-        <img className="h-7 w-max md:h-12" src={logo} alt="Logo" />
-        <img
+    <main className="font-inter container mx-auto lg:h-screen lg:px-48 lg:pt-8">
+      <motion.nav
+        variants={navigationVariants}
+        initial="initial"
+        animate="show"
+        className="flex items-center justify-between px-4 pb-3 pt-7 lg:pb-8"
+      >
+        <motion.img
+          variants={navigationVariants}
+          className="h-7 w-max lg:h-12"
+          src={logo}
+          alt="Logo"
+        />
+        <motion.img
+          variants={navigationVariants}
           onClick={handleClick}
-          className="size-max md:hidden"
+          className="size-max lg:hidden"
           src={iconMenu}
           alt="Hamburger Menu"
         />
-        <ul className="hidden gap-8 md:flex">
+        <motion.ul
+          variants={navigationVariants}
+          className="hidden gap-8 lg:flex"
+        >
           {data.navigation.map((data) => (
-            <li
+            <motion.li
+              variants={navigationVariants}
               className="text-neutral-veryDarkBlue hover:text-primary-softRed transition ease-in-out"
               key={data.id}
             >
               <a href="/">{data.title}</a>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
         {menu && (
-          <div className="bg-neutral-veryDarkBlue/40 fixed inset-0 md:hidden">
+          <div className="bg-neutral-veryDarkBlue/40 fixed inset-0 lg:hidden">
             <div className="absolute right-0 flex h-full w-3/4 flex-col bg-white p-6">
               <img
                 onClick={handleClick}
@@ -59,42 +92,42 @@ const App = () => {
             </div>
           </div>
         )}
-      </nav>
-      <section className="flex flex-col gap-14 p-4 md:grid md:h-auto md:grid-cols-3 md:grid-rows-3 md:gap-9 md:gap-x-4">
-        <section className="grid grid-cols-1 gap-4 md:col-span-2 md:row-span-3 md:grid-cols-2 md:pr-5">
+      </motion.nav>
+      <section className="flex flex-col gap-14 p-4 lg:grid lg:h-auto lg:grid-cols-3 lg:grid-rows-3 lg:gap-9 lg:gap-x-4">
+        <section className="grid grid-cols-1 gap-4 lg:col-span-2 lg:row-span-3 lg:grid-cols-2 lg:pr-5">
           <img
-            className="h-max w-full md:hidden"
+            className="h-max w-full lg:hidden"
             src={mobileWeb3}
             alt="Web 3 Image"
           />
           <img
-            className="col-span-2 hidden h-max w-full md:block"
+            className="col-span-2 hidden h-max w-full lg:block"
             src={desktopWeb3}
             alt="Web 3 Image"
           />
-          <h1 className="text-neutral-veryDarkBlue text-[2.6rem] font-extrabold leading-none md:w-3/4 md:text-5xl">
+          <h1 className="text-neutral-veryDarkBlue text-[2.6rem] font-extrabold leading-none lg:w-3/4 lg:text-5xl">
             {data.mainArticle.title}
           </h1>
-          <div className="flex flex-col space-y-4 md:h-full md:justify-between md:space-y-0 md:pl-3">
-            <p className="text-neutral-darkGrayishBlue md:text-md md:text-pretty">
+          <div className="flex flex-col space-y-4 lg:h-full lg:justify-between lg:space-y-0 lg:pl-3">
+            <p className="text-neutral-darkGrayishBlue lg:text-pretlg lg:text-sm">
               {data.mainArticle.description}
             </p>
             <a
-              className="bg-primary-softRed md:text-md hover:bg-neutral-veryDarkBlue w-max px-6 py-3 text-sm tracking-[0.25rem] text-white transition ease-in-out"
+              className="bg-primary-softRed hover:bg-neutral-veryDarkBlue w-max px-6 py-3 text-sm tracking-[0.25rem] text-white transition ease-in-out sm:text-sm"
               href="/"
             >
               READ MORE
             </a>
           </div>
         </section>
-        <aside className="bg-neutral-veryDarkBlue flex flex-col gap-4 p-5 md:row-span-3 md:py-8">
-          <h1 className="text-primary-softOrange text-3xl font-bold md:text-5xl">
+        <aside className="bg-neutral-veryDarkBlue flex flex-col gap-4 p-5 lg:row-span-3 lg:py-8">
+          <h1 className="text-primary-softOrange text-3xl font-bold lg:text-5xl">
             New
           </h1>
-          <ul className="divide-neutral-darkGrayishBlue flex flex-col gap-2 divide-y-[1px] md:grid md:h-full md:grid-flow-row">
+          <ul className="divide-neutral-darkGrayishBlue flex flex-col gap-2 divide-y-[1px] lg:grid lg:h-full lg:grid-flow-row">
             {data.newArticle.map((data) => (
               <li className="py-5" key={data.id}>
-                <h2 className="hover:text-primary-softOrange text-xl font-bold text-white transition ease-in-out md:text-2xl">
+                <h2 className="hover:text-primary-softOrange text-xl font-bold text-white transition ease-in-out lg:text-2xl">
                   <a href="/">{data.title}</a>
                 </h2>
                 <p className="text-neutral-grayishBlue">{data.description}</p>
@@ -102,7 +135,7 @@ const App = () => {
             ))}
           </ul>
         </aside>
-        <ul className="flex h-max flex-col gap-8  md:col-span-3 md:grid md:grid-flow-col">
+        <ul className="flex h-max flex-col gap-8  lg:col-span-3 lg:grid lg:grid-flow-col">
           {data.topArticle.map((data) => (
             <li className="flex gap-5" key={data.id}>
               <img
