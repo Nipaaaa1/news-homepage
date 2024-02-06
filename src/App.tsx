@@ -7,26 +7,8 @@ import gamingGrowth from "/images/image-gaming-growth.jpg";
 import retroPcs from "/images/image-retro-pcs.jpg";
 import topLaptops from "/images/image-top-laptops.jpg";
 
-import { motion } from "framer-motion";
-
 import data from "./data";
 import { useState } from "react";
-
-const navigationVariants = {
-  intial: {
-    opacity: 0,
-    scale: 0,
-  },
-  show: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      type: "spring",
-      staggerChildren: 0.1,
-    },
-  },
-};
 
 const App = () => {
   const images = [retroPcs, topLaptops, gamingGrowth];
@@ -37,39 +19,24 @@ const App = () => {
   };
   return (
     <main className="container mx-auto font-inter lg:h-screen lg:px-48 lg:pt-8">
-      <motion.nav
-        variants={navigationVariants}
-        initial="initial"
-        animate="show"
-        className="flex items-center justify-between px-4 pb-3 pt-7 lg:pb-8"
-      >
-        <motion.img
-          variants={navigationVariants}
-          className="h-7 w-max lg:h-12"
-          src={logo}
-          alt="Logo"
-        />
-        <motion.img
-          variants={navigationVariants}
+      <nav className="flex items-center justify-between px-4 pb-3 pt-7 lg:pb-8">
+        <img className="h-7 w-max lg:h-12" src={logo} alt="Logo" />
+        <img
           onClick={handleClick}
           className="size-max lg:hidden"
           src={iconMenu}
           alt="Hamburger Menu"
         />
-        <motion.ul
-          variants={navigationVariants}
-          className="hidden gap-8 lg:flex"
-        >
+        <ul className="hidden gap-8 lg:flex">
           {data.navigation.map((data) => (
-            <motion.li
-              variants={navigationVariants}
+            <li
               className="text-neutral-veryDarkBlue transition ease-in-out hover:text-primary-softRed"
               key={data.id}
             >
               <a href="/">{data.title}</a>
-            </motion.li>
+            </li>
           ))}
-        </motion.ul>
+        </ul>
         {menu && (
           <div className="fixed inset-0 bg-neutral-veryDarkBlue/40 lg:hidden">
             <div className="absolute right-0 flex h-full w-3/4 flex-col bg-white p-6">
@@ -92,7 +59,7 @@ const App = () => {
             </div>
           </div>
         )}
-      </motion.nav>
+      </nav>
       <section className="flex flex-col gap-14 p-4 lg:grid lg:h-auto lg:grid-cols-3 lg:grid-rows-3 lg:gap-9 lg:gap-x-4">
         <section className="grid grid-cols-1 gap-4 lg:col-span-2 lg:row-span-3 lg:grid-cols-2 lg:pr-5">
           <img
